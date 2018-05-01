@@ -34,8 +34,8 @@ class RingBuffer
     self.store[self.length - 1 + self.start_idx] = nil
     self.length -= 1
 
-    p "pop"
-    p self.store
+    # p "pop"
+    # p self.store
 
     popped
   end
@@ -48,9 +48,9 @@ class RingBuffer
     resize!
     self.store[length + self.start_idx - 1] = val
 
-    p "push"
-    p length + self.start_idx
-    p self.store
+    # p "push"
+    # p length + self.start_idx
+    # p self.store
   end
 
   # O(n): has to shift over all the elements.
@@ -65,8 +65,8 @@ class RingBuffer
     #   self.start_idx = 0
     # end
 
-    p "shifted"
-    p self.store
+    # p "shifted"
+    # p self.store
 
     shifted
     # shifted = self.store[0]
@@ -88,8 +88,8 @@ class RingBuffer
 
     self.store[new_idx] = val
 
-    p "unshifted"
-    p self.store
+    # p "unshifted"
+    # p self.store
     val
     # self.length += 1
     # resize!

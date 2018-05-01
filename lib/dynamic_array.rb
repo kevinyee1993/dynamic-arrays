@@ -84,6 +84,15 @@ class DynamicArray
   def resize!
     if self.length > self.capacity
       self.capacity *= 2
+
+      newStaticArr = StaticArray.new(self.capacity)
+
+      for i in 0..self.length
+        newStaticArr[i] = self.store[i]
+      end
+
+      self.store = newStaticArr
+
     end
   end
 end

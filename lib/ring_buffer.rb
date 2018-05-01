@@ -43,11 +43,13 @@ class RingBuffer
   # O(1) ammortized; O(n) worst case. Variable because of the possible
   # resize.
   def push(val)
-    self.store[length + self.start_idx] = val
+    # self.store[length] = val
     self.length += 1
     resize!
+    self.store[length + self.start_idx - 1] = val
 
     p "push"
+    p length + self.start_idx
     p self.store
   end
 
@@ -114,6 +116,7 @@ class RingBuffer
 #keeping the extra stuff at the very end of the new array
   def resize!
     if self.length > self.capacity
+      prev_capacity = self.capacity
       self.capacity *= 2
 
       newStaticArr = StaticArray.new(self.capacity)
@@ -125,9 +128,10 @@ class RingBuffer
 
 #wait leave the start_idx as a negative number and instead just
 #evaluate it every time
-      for i in 0..self.length
+      for i in 0..self.length - 2
         curr_start_idx = (self.start_idx + i) % self.capacity
-        newStaticArr[curr_start_idx] = self.store[curr_start_idx]
+        prev_start_idx = (self.start_idx + i) % prev_capacity
+        newStaticArr[curr_start_idx] = self.store[prev_start_idx]
       end
 
       self.store = newStaticArr

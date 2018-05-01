@@ -4,10 +4,14 @@ class DynamicArray
   attr_reader :length
 
   def initialize
+    self.length = 0
   end
 
   # O(1)
   def [](index)
+    raise("index out of bounds") if index >= self.length
+
+
   end
 
   # O(1)
@@ -16,6 +20,7 @@ class DynamicArray
 
   # O(1)
   def pop
+    raise("index out of bounds") if self.length == 0
   end
 
   # O(1) ammortized; O(n) worst case. Variable because of the possible
@@ -25,6 +30,7 @@ class DynamicArray
 
   # O(n): has to shift over all the elements.
   def shift
+    raise("index out of bounds") if self.length == 0
   end
 
   # O(n): has to shift over all the elements.

@@ -12,18 +12,23 @@ class QueueWithMax
   attr_accessor :store
 
   def initialize
+    self.store = []
   end
 
   def enqueue(val)
+    self.store.push(val)
   end
 
   def dequeue
+    self.store.shift
   end
 
   def max
+    self.store.max
   end
 
   def length
+    self.store.length
   end
 
 end
